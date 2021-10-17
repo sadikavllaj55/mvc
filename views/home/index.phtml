@@ -1,54 +1,34 @@
 <?php
-/*require_once '../../src/register/controller/Input.php';
+/**
+ * @var array $roles Roles
+ */
 
-if(Input::exists()) {
-    $validate = new Validate();
-    $validation = $validate->check($_POST,array(
-        'username'=>array(
-            'required' => true,
-            'min' => 2,
-            'max' => 20,
-            'uniqe'=>'users'
-        ),
-        'password' => array(
-            'required'=> true,
-            'min'=> 6,
-        ),
-        'passwordRepeat' => array(
-            'required'=> true,
-            'matches'=> 'password'
-        )
-    ));
-    if($validation->passed()){
-        //register user
-    }else{
-        //output errors
-    }
-}
-*/?>
+$errors = $_GET['errors'] ?? [];
+?>
 
-<form class="form-signin" method="post" action="index.php?page=home&action=register">
+<form class="form-signin col-lg-4" method="post" action="index.php?page=home&action=register">
     <h1 class="h3 mb-3 font-weight-normal">Register</h1>
-    <label for="inputEmail" class="sr-only">Email address</label>
-    <input type="text" id="inputEmail" class="form-control" name="username"
-           placeholder="Email address" required autofocus>
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="inputPassword" class="form-control" name="password"
-           placeholder="Password" required>
+    <!--<label for="inputUsername">Username</label>-->
+    <input type="text" id="inputUsername" class="form-control mb-3" name="username" placeholder="Username">
+    <!--<label for="inputEmail">Email address</label>-->
+    <input type="text" id="inputEmail" class="form-control mb-3" name="email" placeholder="Email address">
+    <!--<label for="inputPassword">Password</label>-->
+    <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password">
     <label for="inputPasswordRepeat" class="sr-only">Password Repeat</label>
-    <input type="password" id="inputPasswordRepeat" class="form-control" name="password_repeat"
-           placeholder="Password Repeat" required>
-    <label>
-        <select id="type" name="account_type" class="form-control">
-            <option value="admin">Admin</option>
-            <option value="guest">Guest</option>
-        </select>
-    </label>
-    <?php if (!empty($error)): ?>
+    <input type="password" id="inputPasswordRepeat" class="form-control mb-3" name="password_repeat" placeholder="Password Repeat">
+    <label for="inputRole">Select Role</label>
+    <select id="type" name="account_type" class="form-control mb-3" id="inputRole">
+        <?php foreach ($roles as $role): ?>
+        <option value="<?= $role['id'] ?>"><?= $role['type'] ?></option>
+        <?php endforeach; ?>
+    </select>
+    <?php if (!empty($errors)): ?>
     <div class="alert alert-danger">
-        <?= $error ?>
+        <?php foreach ($errors as $error): ?>
+        <?= $error; ?><br>
+        <?php endforeach; ?>
     </div>
     <?php endif; ?>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
-    <p class="mt-5 mb-3 text-muted">&copy; 2017-2020</p>
+    <p class="mt-5 mb-3 text-muted">&copy; <?= date('Y') ?></p>
 </form>

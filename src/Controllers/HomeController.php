@@ -2,7 +2,9 @@
 
 namespace App\Controllers;
 
+use App\Model\Auth;
 use App\Model\DatabaseConnection;
+use App\Validation\Validator;
 use App\View\Template;
 
 class HomeController extends BaseController
@@ -24,19 +26,29 @@ class HomeController extends BaseController
         if ($action == 'index') {
             $this->showIndex();
         }
+
         if ($action == 'login') {
-            $this->showLogin();
+            if ($this->isGet()) {
+                $this->showLogin();
+            } else {
+                $this->login();
+            }
         }
 
         if ($action == 'register') {
             $this->register();
+        }
+
+        if ($action == 'logout') {
+            $this->logout();
         }
     }
 
     public function showIndex()
     {
         $view = new Template();
-        $view->view('home/index', []);
+        $auth = new Auth();
+        $view->view('home/index', ['roles' => $auth->getRoleList()]);
     }
 
     public function showLogin()
@@ -49,20 +61,73 @@ class HomeController extends BaseController
     {
         $data = $_POST;
         $username = $data['username'];
+        $email = $data['email'];
         $password = $data['password'];
         $password_repeat = $data['password_repeat'];
         $account_type = $data['account_type'];
-        /*$validator = new ValidatorClass();
-        $validator->validation_list = [];
-        $validator->notEmpty($username, 'Username should not be empty');
-        $validator->length($username, 6);
-        $validator->email($email);
-        Session::get('post_length', 25)
-        Session::clean()
-        Session::add('name', $value)
-        $validator->isValid();*/
+
+        $auth = new Auth();
+        $validation = new Validator();
+
+        $validation->notEmpty($username, 'Username should not be empty');
+        $validation->notEmpty($email, 'Email should not be empty');
+        $validation->isEmail($email, 'The specified email is not valid');
+        $validation->customValidation($username, function () {
+
+        });
+
+        $validation->notEmpty($password, 'Password should not be empty');
+        $validation->containsCapitalLetters($password, 'Password should contain a capital letter');
+        $validation->containsNumbers($password, 'Password should contain a number');
+        $validation->shouldMatch($password, $password_repeat, 'Passwords don\'t match');
+
+        $non_unique_id = $auth->checkEmailUsername($username, $email);
+        $admin_allowed = $auth->hasAdmin() && $account_type == 1;
+
+        if ($non_unique_id) {
+            $validation->addError('Username or email is taken.');
+        }
+
+        if ($admin_allowed) {
+            $validation->addError('You can\'t register as admin.');
+        }
+
+        if (!$validation->isValid()) {
+            $this->redirect('home', 'index', ['errors' => $validation->getErrors()]);
+        }
+
+        if ($auth->register($username, $email, $password, $account_type)) {
+            $login = $auth->login($username, $password);
+
+            if ($login) {
+                $this->redirect('home', 'login');
+            }
+        }
 
         $this->redirect('home', 'login');
-        //header('Location: index.php?page=home');
+    }
+
+    private function login()
+    {
+        $identity = $_POST['username'];
+        $password = $_POST['password'];
+
+        $auth = new Auth();
+
+        $success = $auth->login($identity, $password);
+
+        if ($success) {
+            $this->redirect('dashboard', 'index');
+        } else {
+            $this->redirect('home', 'login');
+        }
+    }
+
+    public function logout(){
+        session_start();
+        session_unset();
+        session_destroy();
+
+        $this->redirect('home','login');
     }
 }

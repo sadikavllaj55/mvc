@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <title>Login</title>
+    <title>Welcome</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://getbootstrap.com/docs/4.5/dist/css/bootstrap.min.css" rel="stylesheet" >
@@ -30,15 +30,17 @@
             }
         }
     </style>
+    <!-- Custom styles for this template -->
+    <link href="https://getbootstrap.com/docs/4.5/examples/sign-in/signin.css" rel="stylesheet">
 </head>
 <body>
-    <?php include TEMPLATES . 'layout/navigation.phtml'; ?>
+<?php include TEMPLATES . 'layout/admin-header.phtml'; ?>
 
-    <main role="main" class="container">
+<main role="main" class="container">
     <?php include TEMPLATES . $template . '.phtml'; ?>
-    </main>
+</main>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script>
-    <script src="https://getbootstrap.com/docs/4.5/dist/js/bootstrap.bundle.min.js" ></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script>
+<script src="https://getbootstrap.com/docs/4.5/dist/js/bootstrap.bundle.min.js" ></script>
 </body>
 </html>
