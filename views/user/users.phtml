@@ -1,7 +1,7 @@
 <?php
 /**
  * @var array $users
- * @var string $errors
+ * @var array $user
  */
 $error = $_GET['error'] ?? null;
 ?>
@@ -26,20 +26,24 @@ $error = $_GET['error'] ?? null;
                     </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($users as $user): ?>
+                    <?php foreach ($users as $u): ?>
                         <tr>
-                            <td><?= $user['id'] ?></td>
-                            <td><?= $user['username'] ?></td>
-                            <td><?= $user['email'] ?></td>
-                            <td><?= $user['role'] ?></td>
+                            <td><?= $u['id'] ?></td>
+                            <td><?= $u['username'] ?></td>
+                            <td><?= $u['email'] ?></td>
+                            <td><?= $u['role'] ?></td>
                             <td>
+                                <?php if ($u['id'] != $user['id']): ?>
                                 <div style="display:flex;">
-                                    <a class="btn btn-warning mr-2" href="index.php?page=user&action=edit&id=<?= $user['id'] ?>"><i class="fa fa-edit"></i> Edit</a>
+                                    <a class="btn btn-warning mr-2" href="index.php?page=user&action=edit&id=<?= $u['id'] ?>"><i class="fa fa-edit"></i> Edit</a>
                                     <form method="post" action="index.php?page=user&action=delete" class="mr-2">
-                                        <input type="hidden" name="id" value="<?= $user['id'] ?>">
+                                        <input type="hidden" name="id" value="<?= $u['id'] ?>">
                                         <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button>
                                     </form>
                                 </div>
+                                <?php else: ?>
+                                <em class="text-center">This is you</em>
+                                <?php endif; ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>

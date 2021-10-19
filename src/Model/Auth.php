@@ -42,7 +42,6 @@ class Auth
      * @return bool
      */
     public function login($username, $password) {
-
         $query = $this->db->prepare('
             SELECT users.*, roles.type as role 
             FROM users, roles 
@@ -111,7 +110,6 @@ class Auth
         return count($query->fetchAll(PDO::FETCH_ASSOC)) > 0;
     }
 
-
     public function hasAdmin() {
         $query = $this->db->prepare('
            SELECT username FROM users WHERE role_id = 1
@@ -130,7 +128,25 @@ class Auth
         return count($query->fetchAll(PDO::FETCH_ASSOC)) > 0;
     }
 
-    public function logout(){
+    public function updateUserSession() {
+        $current_user = $this->getCurrentUser();
+        $query = $this->db->prepare('
+            SELECT users.*, roles.type as role 
+            FROM users, roles 
+            WHERE users.id = :user AND users.role_id=roles.id');
+        $query->bindValue(':user', $current_user['id']);
+        $query->execute();
+
+        $row = $query->fetch(PDO::FETCH_ASSOC);
+
+        if($row !== false) {
+            session_start();
+            unset($row['password']); // delete the password column
+            $_SESSION['user'] = $row;
+        }
+    }
+
+    public function logout() {
         session_start();
         session_unset();
         session_destroy();

@@ -19,14 +19,6 @@ class UserController extends BaseController
 
         $action = $_GET['action'] ?? 'index';
 
-        if ($action == 'profile') {
-            if ($this->isGet()) {
-                $this->showProfile();
-            } else {
-                $this->editProfile();
-            }
-        }
-
         if ($action == 'users') {
             $this->showAllUsers();
         }
@@ -44,19 +36,14 @@ class UserController extends BaseController
         }
     }
 
-    public function showProfile()
-    {
-        $auth = new Auth();
-        $user = $auth->getCurrentUser();
-        $view = new Template('admin/base');
-        $view->view('user/profile', ['user' => $user, 'to_edit' => $user]);
-    }
-
     public function showEdit()
     {
         $user_id = $_GET['id'] ?? null;
         $auth = new Auth();
         $current_user = $auth->getCurrentUser();
+        if ($user_id == $current_user['id']) {
+            $this->redirect('user', 'users', ['error' => 'You can\'t edit yourself. Go to your <a href="index.php?page=user&action=profile">profile</a> to edit your data.']);
+        }
         $view = new Template('admin/base');
         $model = new Users();
         $user = $model->getById($user_id);
@@ -117,50 +104,6 @@ class UserController extends BaseController
             $this->redirect('user', 'users');
         } else {
             $this->redirect('user', 'users', ['error' => 'Could not edit the user']);
-        }
-    }
-
-    public function editProfile()
-    {
-        $auth = new Auth();
-        $model = new Users();
-        $current_user = $auth->getCurrentUser();
-
-        $user_id = $current_user['id'];
-        $username = $_POST['username'];
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-        $password_repeat = $_POST['password_repeat'];
-
-        $validation = new Validator();
-
-        $validation->notEmpty($username, 'Username should not be empty');
-        $validation->notEmpty($email, 'Email should not be empty');
-        $validation->isEmail($email, 'The specified email is not valid');
-        $validation->shouldMatch($password, $password_repeat, 'Passwords don\'t match');
-
-        if ($password != '') {
-            $validation->notEmpty($password, 'Password should not be empty');
-            $validation->containsCapitalLetters($password, 'Password should contain a capital letter');
-            $validation->containsNumbers($password, 'Password should contain a number');
-        }
-
-        $non_unique_id = $auth->checkEmailUsername($username, $email, $user_id);
-
-        if ($non_unique_id) {
-            $validation->addError('Username or email is taken.');
-        }
-
-        if (!$validation->isValid()) {
-            $this->redirect('user', 'edit', ['id' => $user_id, 'errors' => $validation->getErrors()]);
-        }
-
-        $edit = $model->editUser($user_id, $username, $email, $password);
-
-        if ($edit) {
-            $this->redirect('dashboard', 'index');
-        } else {
-            $this->redirect('user', 'profile', ['error' => 'Could not edit your profile']);
         }
     }
 
