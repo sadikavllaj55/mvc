@@ -1,0 +1,38 @@
+<?php
+/**
+ * @var array $user
+ */
+?>
+<nav id="sidebar">
+    <h1 class="text-center"><a href="index.php?page=dashboard" class="logo">Panel</a></h1>
+    <div class="custom-menu">
+        <button type="button" id="sidebarCollapse" class="btn btn-primary">
+            <i class="fa fa-bars"></i>
+            <span class="sr-only">Toggle Menu</span>
+        </button>
+    </div>
+    <div class="p-4">
+        <ul class="list-unstyled components mb-5">
+            <li class="active">
+                <a href="index.php?page=user&action=profile">
+                    <i class="fa fa-user-circle"></i> <?= $user['username'] ?> (<?= $user['role'] ?>)
+                </a>
+            </li>
+            <?php if ($user['role'] == 'Admin'): ?>
+            <li>
+                <a href="#usersMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle collapsed"><i class="fa fa-user"></i> Users</a>
+                <ul class="list-unstyled collapse" id="usersMenu" style="">
+                    <li>
+                        <a href="index.php?page=user&action=users">List All</a>
+                    </li>
+                </ul>
+            </li>
+            <?php endif; ?>
+            <li><a href="index.php?page=post&action=list"><i class="fa fa-newspaper-o"></i> Posts</a></li>
+            <li><a href="index.php?page=home&action=logout"><i class="fa fa-sign-out"></i> Logout</a></li>
+        </ul>
+    </div>
+    <div class="footer" style="position:absolute; bottom: 0; width: 100%; text-align: center">
+        <p>©<?= date('Y') ?> All rights reserved</p>
+    </div>
+</nav>

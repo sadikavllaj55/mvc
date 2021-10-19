@@ -6,7 +6,7 @@ use PDO;
 
 class Auth
 {
-    public $db;
+    private $db;
 
     public function __construct()
     {
@@ -44,9 +44,9 @@ class Auth
     public function login($username, $password) {
 
         $query = $this->db->prepare('
-            SELECT * 
-            FROM users 
-            WHERE username = :user');
+            SELECT users.*, roles.type as role 
+            FROM users, roles 
+            WHERE username = :user AND users.role_id=roles.id');
         $query->bindValue(':user', $username);
         $query->execute();
 
@@ -66,10 +66,18 @@ class Auth
     }
 
     public function getRoleList() {
-        $query = $this->db->query('
-            SELECT id, type
-            FROM roles
-        ');
+
+        if(!$this->hasAdmin()) {
+            $query = $this->db->query('
+                SELECT id, type
+                FROM roles
+            ');
+        } else {
+            $query = $this->db->query('
+                SELECT id, type
+                FROM roles WHERE id != 1;
+            ');
+        }
 
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -90,15 +98,19 @@ class Auth
         return null;
     }
 
-    public function checkEmailUsername($username, $email){
+    public function checkEmailUsername($username, $email, $exception_id = 0){
         $query = $this->db->prepare('
-           SELECT username FROM users WHERE email=:email or username=:username
+           SELECT * 
+           FROM users 
+           WHERE (email=:email OR username=:username) AND id<>:exception
         ');
         $query->bindParam(':username', $username);
         $query->bindParam(':email', $email);
+        $query->bindParam(':exception', $exception_id, PDO::PARAM_INT);
         $query->execute();
         return count($query->fetchAll(PDO::FETCH_ASSOC)) > 0;
     }
+
 
     public function hasAdmin() {
         $query = $this->db->prepare('
@@ -107,6 +119,15 @@ class Auth
 
         $query->execute();
         return count($query->fetchAll()) > 0;
+    }
+
+    public function checkUsername($username){
+        $query = $this->db->prepare('
+           SELECT username FROM users WHERE username=:username
+        ');
+        $query->bindParam(':username', $username);;
+        $query->execute();
+        return count($query->fetchAll(PDO::FETCH_ASSOC)) > 0;
     }
 
     public function logout(){

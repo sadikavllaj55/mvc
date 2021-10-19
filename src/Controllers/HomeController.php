@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Model\Auth;
 use App\Model\DatabaseConnection;
+use App\Model\Roles;
 use App\Validation\Validator;
 use App\View\Template;
 
@@ -19,9 +20,21 @@ class HomeController extends BaseController
         $this->db = $db->getConnection();
     }
 
+    /**
+     * @return mixed|void
+     */
     public function control()
     {
         $action = $_GET['action'] ?? 'index';
+
+        if ($action == 'logout') {
+            $this->logout();
+        }
+
+        $auth = new Auth();
+        if ($auth->isLoggedIn()) {
+            $this->redirect('dashboard', 'index');
+        }
 
         if ($action == 'index') {
             $this->showIndex();
@@ -38,12 +51,11 @@ class HomeController extends BaseController
         if ($action == 'register') {
             $this->register();
         }
-
-        if ($action == 'logout') {
-            $this->logout();
-        }
     }
 
+    /**
+     *
+     */
     public function showIndex()
     {
         $view = new Template();
@@ -51,12 +63,18 @@ class HomeController extends BaseController
         $view->view('home/index', ['roles' => $auth->getRoleList()]);
     }
 
+    /**
+     *
+     */
     public function showLogin()
     {
         $view = new Template();
-        $view->view('home/login', []);
+        $view->view('home/login');
     }
 
+    /**
+     *
+     */
     private function register()
     {
         $data = $_POST;
@@ -72,14 +90,13 @@ class HomeController extends BaseController
         $validation->notEmpty($username, 'Username should not be empty');
         $validation->notEmpty($email, 'Email should not be empty');
         $validation->isEmail($email, 'The specified email is not valid');
-        $validation->customValidation($username, function () {
-
-        });
 
         $validation->notEmpty($password, 'Password should not be empty');
         $validation->containsCapitalLetters($password, 'Password should contain a capital letter');
         $validation->containsNumbers($password, 'Password should contain a number');
         $validation->shouldMatch($password, $password_repeat, 'Passwords don\'t match');
+
+        $role_exists = Roles::getById($account_type) !== false;
 
         $non_unique_id = $auth->checkEmailUsername($username, $email);
         $admin_allowed = $auth->hasAdmin() && $account_type == 1;
@@ -90,6 +107,10 @@ class HomeController extends BaseController
 
         if ($admin_allowed) {
             $validation->addError('You can\'t register as admin.');
+        }
+
+        if (!$role_exists) {
+            $validation->addError('The selected role is not valid.');
         }
 
         if (!$validation->isValid()) {
@@ -107,26 +128,46 @@ class HomeController extends BaseController
         $this->redirect('home', 'login');
     }
 
+    /**
+     * if true redirect index else home login
+     */
     private function login()
     {
-        $identity = $_POST['username'];
+        $username = $_POST['username'];
         $password = $_POST['password'];
 
         $auth = new Auth();
+        $validation = new Validator();
 
-        $success = $auth->login($identity, $password);
+        $validation->notEmpty($username,'Username should be not empty');
+        $validation->notEmpty($password,'Password should be not empty');
+
+        $username_exists = $auth->checkUsername($username);
+
+        if(!$username_exists) {
+            $validation->addError('The specified account does not exist!');
+        }
+
+        if (!$validation->isValid()) {
+            $this->redirect('home', 'login', ['errors' => $validation->getErrors()]);
+        }
+
+        $success = $auth->login($username, $password);
 
         if ($success) {
             $this->redirect('dashboard', 'index');
         } else {
-            $this->redirect('home', 'login');
+            $validation->addError('Wrong password!');
+            $this->redirect('home', 'login', ['errors' => $validation->getErrors()]);
         }
     }
 
-    public function logout(){
-        session_start();
-        session_unset();
-        session_destroy();
+    /**
+     * Logout
+     */
+    public function logout() {
+        $auth = new Auth();
+        $auth->logout();
 
         $this->redirect('home','login');
     }

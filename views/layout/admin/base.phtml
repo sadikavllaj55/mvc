@@ -9,10 +9,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <title>Login</title>
+    <title>Welcome</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="https://getbootstrap.com/docs/4.5/dist/css/bootstrap.min.css" rel="stylesheet" >
+    <link href="https://getbootstrap.com/docs/4.5/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
@@ -20,15 +19,19 @@
     <link href="css/admin.css" rel="stylesheet">
 </head>
 <body>
-    <main role="main" class="container">
-    <?php include TEMPLATES . $template . '.phtml'; ?>
-    </main>
-    <footer class="container-fluid">
-        <section class="container">
-            <p class="mt-5 mb-3 text-muted">&copy; Sadik Avllaj <?= date('Y') ?></p>
-        </section>
-    </footer>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script>
-    <script src="https://getbootstrap.com/docs/4.5/dist/js/bootstrap.bundle.min.js" ></script>
+<div class="wrapper d-flex align-items-stretch">
+    <?php include TEMPLATES . 'layout/admin/sidebar.phtml'; ?>
+    <div id="content" class="p-4 p-md-5 pt-5">
+        <?php include TEMPLATES . $template . '.phtml'; ?>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script>
+<script src="https://getbootstrap.com/docs/4.5/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    $('#sidebarCollapse').on('click', function () {
+        $('#sidebar').toggleClass('active');
+    });
+</script>
 </body>
 </html>

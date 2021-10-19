@@ -5,30 +5,47 @@
 
 $errors = $_GET['errors'] ?? [];
 ?>
-
-<form class="form-signin col-lg-4" method="post" action="index.php?page=home&action=register">
-    <h1 class="h3 mb-3 font-weight-normal">Register</h1>
-    <!--<label for="inputUsername">Username</label>-->
-    <input type="text" id="inputUsername" class="form-control mb-3" name="username" placeholder="Username">
-    <!--<label for="inputEmail">Email address</label>-->
-    <input type="text" id="inputEmail" class="form-control mb-3" name="email" placeholder="Email address">
-    <!--<label for="inputPassword">Password</label>-->
-    <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password">
-    <label for="inputPasswordRepeat" class="sr-only">Password Repeat</label>
-    <input type="password" id="inputPasswordRepeat" class="form-control mb-3" name="password_repeat" placeholder="Password Repeat">
-    <label for="inputRole">Select Role</label>
-    <select id="type" name="account_type" class="form-control mb-3" id="inputRole">
-        <?php foreach ($roles as $role): ?>
-        <option value="<?= $role['id'] ?>"><?= $role['type'] ?></option>
-        <?php endforeach; ?>
-    </select>
-    <?php if (!empty($errors)): ?>
-    <div class="alert alert-danger">
-        <?php foreach ($errors as $error): ?>
-        <?= $error; ?><br>
-        <?php endforeach; ?>
+<div class="row">
+    <div class="col-lg-3 col-md-2 col-sm-1"></div>
+    <div class="col-lg-6 col-md-8 col-sm-10">
+        <h1 class="h3 mb-3 font-weight-normal">Register</h1>
+        <form class="form-signin" method="post" action="index.php?page=home&action=register">
+            <div class="form-group">
+                <label for="inputUsername">Username</label>
+                <input type="text" id="inputUsername" class="form-control mb-3" name="username" placeholder="Username">
+            </div>
+            <div class="form-group">
+                <label for="inputEmail">Email address</label>
+                <input type="text" id="inputEmail" class="form-control mb-3" name="email" placeholder="Email address">
+            </div>
+            <div class="form-group">
+                <label for="inputPassword">Password</label>
+                <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password">
+                <small id="passwordHint" class="form-text text-muted">Password should contain at least one capital letter and a number.</small>
+            </div>
+            <div class="form-group">
+                <label for="inputPasswordRepeat">Password Repeat</label>
+                <input type="password" id="inputPasswordRepeat" class="form-control mb-3" name="password_repeat" placeholder="Password Repeat">
+                <small id="passwordRepeatHint" class="form-text text-muted">Value should match the password field.</small>
+            </div>
+            <div class="form-group">
+                <label for="inputRole">Select Role</label>
+                <select id="type" name="account_type" class="form-control mb-3" id="inputRole">
+                    <?php foreach ($roles as $role): ?>
+                        <option value="<?= $role['id'] ?>"><?= $role['type'] ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <?php if (!empty($errors)): ?>
+                <div class="alert alert-danger">
+                    <?php foreach ($errors as $error): ?>
+                        <?= $error; ?><br>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button><br>
+            <small>Already registered? Sign in <a href="index.php?action=login">here</a>.</small>
+        </form>
     </div>
-    <?php endif; ?>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
-    <p class="mt-5 mb-3 text-muted">&copy; <?= date('Y') ?></p>
-</form>
+    <div class="col-lg-3 col-md-2 col-sm-1"></div>
+</div>

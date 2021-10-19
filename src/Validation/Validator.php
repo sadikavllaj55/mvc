@@ -91,4 +91,9 @@ class Validator
     public function addError($message) {
         $this->errors[] = $message;
     }
+
+    public function isInDatabase($value, $table, $column, $message)
+    {
+
+    }
 }

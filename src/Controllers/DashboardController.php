@@ -7,7 +7,11 @@ use App\View\Template;
 
 class DashboardController extends BaseController
 {
-    public function control() {
+    /**
+     * @return void
+     */
+    public function control()
+    {
         $action = $_GET['action'] ?? 'index';
 
         if ($action == 'index') {
@@ -15,7 +19,11 @@ class DashboardController extends BaseController
         }
     }
 
-    private function showIndex() {
+    /**
+     *show index page depending on isLoggedIn and isAdmin
+     */
+    private function showIndex()
+    {
         $auth = new Auth();
         if (!$auth->isLoggedIn()) {
             $this->redirect('home', 'login');
@@ -23,14 +31,7 @@ class DashboardController extends BaseController
 
         $user = $auth->getCurrentUser();
 
-        $is_admin = $user['role_id'] == 1;
-
-        if ($is_admin) {
-            $view = new Template('admin');
-        } else {
-            $view = new Template('user');
-        }
-
-        $view->view('dashboard/index', ['username' => $user['username']]);
+        $view = new Template('admin/base');
+        $view->view('dashboard/index', ['user' => $user]);
     }
 }

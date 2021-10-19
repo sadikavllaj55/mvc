@@ -18,14 +18,21 @@ $page = $_GET['page'] ?? 'home';
 $controllerClass = ucfirst($page) . 'Controller';
 $controllerFile = CONTROLLERS . $controllerClass . '.php';
 
-if (file_exists($controllerFile)) {
-    $controllerClass = 'App\Controllers\\' . $controllerClass;
-    /** @var BaseController $controller */
-    $controller = new $controllerClass();
-    return $controller->control();
-} else {
-    http_response_code(404);
-    $view = new Template();
-    $view->view('error/404');
+try {
+    if (file_exists($controllerFile)) {
+        $controllerClass = 'App\Controllers\\' . $controllerClass;
+        /** @var BaseController $controller */
+        $controller = new $controllerClass();
+        return $controller->control();
+    } else {
+        http_response_code(404);
+        $view = new Template('error');
+        $view->view('error/404');
+        exit;
+    }
+} catch (Throwable $e) {
+    http_response_code(500);
+    $view = new Template('error');
+    $view->view('error/500', ['message' => $e->getMessage(), 'trace' => $e->getTraceAsString()]);
     exit;
 }

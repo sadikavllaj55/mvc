@@ -1,21 +1,36 @@
-<form class="form-signin" method="post" action="">
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail" class="sr-only">Email address</label>
-    <input type="text" id="inputEmail" class="form-control" name="username"
-           placeholder="Email address" required autofocus>
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="inputPassword" class="form-control" name="password"
-           placeholder="Password" required>
+<?php
+    $errors = $_GET['errors'] ?? [];
+?>
+<div class="row">
+    <div class="col-lg-3 col-md-2 col-sm-1"></div>
+    <div class="col-lg-6 col-md-8 col-sm-10">
+        <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">Please sign in</h1><br>
+        <form class="form-signin" method="post">
+            <div class="form-group">
+                <label for="inputEmail">Email address</label>
+                <input type="text" id="inputEmail" class="form-control" name="username" placeholder="Email address" required autofocus>
+            </div>
+            <div class="form-group">
+                <label for="inputPassword">Password</label>
+                <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
+            </div>
 
-    <div class="text-danger">
-        <h3> <?/*= $error */?></h3>
-    </div>
+            <div class="checkbox mb-3">
+                <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                </label>
+            </div>
 
-    <div class="checkbox mb-3">
-        <label>
-            <input type="checkbox" value="remember-me"> Remember me
-        </label>
+            <?php if (!empty($errors)): ?>
+                <div class="alert alert-danger">
+                    <?php foreach ($errors as $error): ?>
+                        <?= $error; ?><br>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button><br>
+            <small>Don't have an account? Register <a href="index.php?action=index">here</a> for free.</small>
+        </form>
     </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-    <p class="mt-5 mb-3 text-muted">&copy; <?= date('Y') ?></p>
-</form>
+    <div class="col-lg-3 col-md-2 col-sm-1"></div>
+</div>

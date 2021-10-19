@@ -10,7 +10,7 @@ class Template
         $this->layout = $layout;
     }
 
-    function view($template, $variables = []){
+    function view($template, $variables = []) {
         extract($variables);
         include TEMPLATES . 'layout/' . $this->layout .  '.phtml';
     }

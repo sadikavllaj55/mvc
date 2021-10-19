@@ -10,9 +10,9 @@ abstract class BaseController
     /**
      * Redirect to url, or controller action
      * Ex. /home/register
-     * @param $controller
-     * @param $action
-     * @param $url_params
+     * @param $controller string
+     * @param $action string
+     * @param $url_params array
      */
     public function redirect($controller, $action, $url_params = [])
     {
@@ -25,20 +25,32 @@ abstract class BaseController
         exit;
     }
 
+    /**
+     * @return string method used uppercase
+     */
     public function getMethod()
     {
         return strtoupper($_SERVER['REQUEST_METHOD']);
     }
 
+    /**
+     * @return bool
+     */
     public function isGet()
     {
         return $this->getMethod() == self::METHOD_GET;
     }
 
+    /**
+     * @return bool
+     */
     public function isPost()
     {
         return $this->getMethod() == self::METHOD_POST;
     }
 
+    /**
+     * @return mixed
+     */
     abstract public function control();
 }

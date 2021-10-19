@@ -1,0 +1,33 @@
+###
+
+# curl 'http://localhost/mvc/public/index.php?page=home&action=register'
+#  -H 'Connection: keep-alive'
+#  -H 'Cache-Control: max-age=0'
+#  -H 'sec-ch-ua: "Chromium";v="94", "Google Chrome";v="94", ";Not A Brand";v="99"'
+#  -H 'sec-ch-ua-mobile: ?0'
+#  -H 'sec-ch-ua-platform: "Linux"'
+#  -H 'Upgrade-Insecure-Requests: 1'
+#  -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36'
+#  -H 'Origin: http://localhost'
+#  -H 'Content-Type: application/x-www-form-urlencoded'
+#  -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+#  -H 'Sec-Fetch-Site: same-origin'
+#  -H 'Sec-Fetch-Mode: navigate'
+#  -H 'Sec-Fetch-User: ?1'
+#  -H 'Sec-Fetch-Dest: document'
+#  -H 'Referer: http://localhost/mvc/public/index.php?page=home&action=index'
+#  -H 'Accept-Language: en-US,en;q=0.9'
+#  -H 'Cookie: Phpstorm-c7e863bf=bc81b2d8-fee3-4e14-b06d-33aa101190eb; PHPSESSID=drib5l3oqnq55t9mprmp6mjira'
+#  --data-raw 'username=wffwfw&email=&password=wfwfwfwfw&password_repeat=&account_type=6'
+POST http://localhost/mvc/public/index.php?page=home&action=register
+Connection: keep-alive
+Cache-Control: max-age=0
+Referer: http://localhost/mvc/public/index.php?page=home&action=index
+Accept-Language: en-US,en;q=0.9
+Cookie: Phpstorm-c7e863bf=bc81b2d8-fee3-4e14-b06d-33aa101190eb; PHPSESSID=drib5l3oqnq55t9mprmp6mjira
+Content-Type: application/x-www-form-urlencoded
+
+username=wffwfw&email=&password=wfwfwfwfw&password_repeat=&account_type=6
+
+###
+
