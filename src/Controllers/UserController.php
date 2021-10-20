@@ -42,7 +42,7 @@ class UserController extends BaseController
         $auth = new Auth();
         $current_user = $auth->getCurrentUser();
         if ($user_id == $current_user['id']) {
-            $this->redirect('user', 'users', ['error' => 'You can\'t edit yourself. Go to your <a href="index.php?page=user&action=profile">profile</a> to edit your data.']);
+            $this->redirect('user', 'users', ['error' => 'You can\'t edit yourself. Go to your <a href="index.php?page=dashboard&action=profile">profile</a> to edit your data.']);
         }
         $view = new Template('admin/base');
         $model = new Users();

@@ -10,6 +10,7 @@ use App\View\Template;
 class DashboardController extends BaseController
 {
     /**
+     * control all actions
      * @return void
      */
     public function control()
@@ -38,11 +39,12 @@ class DashboardController extends BaseController
         if (!$auth->isLoggedIn()) {
             $this->redirect('home', 'login');
         }
-
+        $users = new Users();
+        $totalUsers = $users->countUsers();
         $user = $auth->getCurrentUser();
 
         $view = new Template('admin/base');
-        $view->view('dashboard/index', ['user' => $user]);
+        $view->view('dashboard/index', ['user' => $user,'totals' => $totalUsers]);
     }
 
     public function showProfile()
@@ -53,6 +55,9 @@ class DashboardController extends BaseController
         $view->view('user/profile', ['user' => $user, 'to_edit' => $user]);
     }
 
+    /**
+     * edit current profile
+     */
     public function editProfile()
     {
         $auth = new Auth();
@@ -85,7 +90,7 @@ class DashboardController extends BaseController
         }
 
         if (!$validation->isValid()) {
-            $this->redirect('user', 'edit', ['id' => $user_id, 'errors' => $validation->getErrors()]);
+            $this->redirect('dashboard', 'profile', ['id' => $user_id, 'errors' => $validation->getErrors()]);
         }
 
         $edit = $model->editUser($user_id, $username, $email, $password);

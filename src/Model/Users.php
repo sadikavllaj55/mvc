@@ -82,6 +82,17 @@ class Users
         return $query->execute();
     }
 
+    public function countUsers()
+    {
+        $nRows = $this->db->query('select count(*) from users')->fetchColumn();
+        $key = ['count'];
+        $nRows = array($nRows);
+        $assocArray = array_combine($key,$nRows);
+
+        return $assocArray;
+
+    }
+
     public function deleteById($id)
     {
         $query = $this->db->prepare('

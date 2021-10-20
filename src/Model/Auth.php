@@ -39,7 +39,7 @@ class Auth
     /**
      * @param $username
      * @param $password
-     * @return bool
+     * @return bool true if user exist in db
      */
     public function login($username, $password) {
         $query = $this->db->prepare('
@@ -64,6 +64,10 @@ class Auth
         return false;
     }
 
+    /**
+     * return array from table roles
+     * @return array|false
+     */
     public function getRoleList() {
 
         if(!$this->hasAdmin()) {
@@ -81,6 +85,10 @@ class Auth
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    /**
+     * check if is logged in
+     * @return bool
+     */
     public function isLoggedIn() {
         if(!isset($_SESSION)) {
             session_start();
@@ -89,6 +97,10 @@ class Auth
         return isset($_SESSION['user']) && is_array($_SESSION['user']);
     }
 
+    /**
+     * get array if user is logged in with current data puted in session
+     * @return mixed|null
+     */
     public function getCurrentUser() {
         if ($this->isLoggedIn()) {
             return $_SESSION['user'];
@@ -97,6 +109,13 @@ class Auth
         return null;
     }
 
+    /**
+     * check if email or username are used by another user
+     * @param string $username
+     * @param string $email
+     * @param int $exception_id
+     * @return bool
+     */
     public function checkEmailUsername($username, $email, $exception_id = 0){
         $query = $this->db->prepare('
            SELECT * 
@@ -110,6 +129,10 @@ class Auth
         return count($query->fetchAll(PDO::FETCH_ASSOC)) > 0;
     }
 
+    /**
+     * check if user exist with role admin or not(role_id = 1)
+     * @return bool
+     */
     public function hasAdmin() {
         $query = $this->db->prepare('
            SELECT username FROM users WHERE role_id = 1
@@ -119,6 +142,11 @@ class Auth
         return count($query->fetchAll()) > 0;
     }
 
+    /**
+     * check if username exist
+     * @param $username string
+     * @return bool
+     */
     public function checkUsername($username){
         $query = $this->db->prepare('
            SELECT username FROM users WHERE username=:username
@@ -128,6 +156,10 @@ class Auth
         return count($query->fetchAll(PDO::FETCH_ASSOC)) > 0;
     }
 
+    /**
+     * we use this method when we edit profile
+     * update current user sessions
+     */
     public function updateUserSession() {
         $current_user = $this->getCurrentUser();
         $query = $this->db->prepare('
@@ -146,6 +178,9 @@ class Auth
         }
     }
 
+    /**
+     *logout
+     */
     public function logout() {
         session_start();
         session_unset();
