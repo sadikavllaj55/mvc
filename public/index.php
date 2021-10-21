@@ -7,9 +7,10 @@ use App\Controllers\HomeController;
 use App\View\Template;
 
 define('ROOT_DIR', realpath(__DIR__ . '/../'));
-define('CONTROLLERS', realpath(__DIR__ . '/../src/Controllers') . '/');
-define('TEMPLATES', realpath(__DIR__ . '/../views') . '/');
-define('MODEL', realpath(__DIR__ . '/../src/Model') . '/');
+define('CONTROLLERS', realpath(ROOT_DIR . '/src/Controllers') . '/');
+define('TEMPLATES', realpath(ROOT_DIR . '/views') . '/');
+define('MODEL', realpath(ROOT_DIR . '/src/Model') . '/');
+define('UPLOAD_DIR', ROOT_DIR . '/uploads/');
 define('CONFIG', parse_ini_file(ROOT_DIR . '/config/config.ini', true));
 define('BASE_URL', CONFIG['web']['url']);
 

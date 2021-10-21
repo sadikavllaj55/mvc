@@ -2,6 +2,8 @@
 /**
  * @var string $template
  */
+$auth = new \App\Model\Auth();
+$current_user = $auth->getCurrentUser();
 ?>
 <!doctype html>
 <html lang="en">

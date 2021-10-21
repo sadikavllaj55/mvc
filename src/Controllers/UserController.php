@@ -51,17 +51,15 @@ class UserController extends BaseController
             $this->redirect('user', 'users', ['error' => 'User does not exist!']);
         }
 
-        $view->view('user/edit_user', ['user' => $current_user, 'to_edit' => $user]);
+        $view->view('user/edit_user', ['to_edit' => $user]);
     }
 
     public function showAllUsers()
     {
-        $auth = new Auth();
-        $user = $auth->getCurrentUser();
         $model = new Users();
         $users = $model->getList();
         $view = new Template('admin/base');
-        $view->view('user/users', ['users' => $users, 'user' => $user]);
+        $view->view('user/users', ['users' => $users]);
     }
 
     public function editUser()
@@ -111,8 +109,6 @@ class UserController extends BaseController
     {
         $confirm = boolval($_POST['confirm'] ?? 0);
         $user_id = $_POST['id'] ?? null;
-        $auth = new Auth();
-        $current_user = $auth->getCurrentUser();
         $model = new Users();
         if (!$confirm) {
             $template = new Template('admin/base');
@@ -122,7 +118,7 @@ class UserController extends BaseController
 
                 $this->redirect('user', 'users', ['error' => 'Could not find the user']);
             }
-            $template->view('user/confirm_delete', ['user' => $current_user, 'to_delete' => $user]);
+            $template->view('user/confirm_delete', ['to_delete' => $user]);
         } else {
             $deleted = $model->deleteById($user_id);
 

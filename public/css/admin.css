@@ -31,6 +31,7 @@ html, body {
 #sidebar h1 .logo {
     color: #fff;
 }
+
 a:hover, a:focus {
     text-decoration: none !important;
     outline: none !important;
@@ -104,4 +105,9 @@ a[data-toggle="collapse"] {
     -webkit-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
+}
+
+/* DASHBOARD PAGE */
+.small-box {
+    color: #fff;
 }

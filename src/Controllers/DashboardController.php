@@ -17,6 +17,11 @@ class DashboardController extends BaseController
     {
         $action = $_GET['action'] ?? 'index';
 
+        $auth = new Auth();
+        if (!$auth->isLoggedIn()) {
+            $this->redirect('home', 'login');
+        }
+
         if ($action == 'index') {
             $this->showIndex();
         }
@@ -35,16 +40,11 @@ class DashboardController extends BaseController
      */
     private function showIndex()
     {
-        $auth = new Auth();
-        if (!$auth->isLoggedIn()) {
-            $this->redirect('home', 'login');
-        }
         $users = new Users();
         $totalUsers = $users->countUsers();
-        $user = $auth->getCurrentUser();
 
         $view = new Template('admin/base');
-        $view->view('dashboard/index', ['user' => $user,'totals' => $totalUsers]);
+        $view->view('dashboard/index', ['totals' => $totalUsers]);
     }
 
     public function showProfile()
@@ -52,7 +52,7 @@ class DashboardController extends BaseController
         $auth = new Auth();
         $user = $auth->getCurrentUser();
         $view = new Template('admin/base');
-        $view->view('user/profile', ['user' => $user, 'to_edit' => $user]);
+        $view->view('user/profile', ['to_edit' => $user]);
     }
 
     /**

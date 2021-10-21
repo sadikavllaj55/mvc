@@ -1,13 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="b8c55383-8808-4a90-b494-e36d5bd22feb" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Controllers/PostController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/Image.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/Posts.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/post/confirm_delete.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/post/edit.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/post/my_posts.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/post/new.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/post/posts.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/post/view.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2de94d5b-516d-4798-bc22-83b7cb15268e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/2de94d5b-516d-4798-bc22-83b7cb15268e.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/mvc.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mvc.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/admin.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controllers/DashboardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/DashboardController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Auth.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Users.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Users.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Validation/Validator.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Validation/Validator.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/dashboard/index.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/views/dashboard/index.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/error/500.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/views/error/500.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/layout/admin/base.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/views/layout/admin/base.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/layout/admin/sidebar.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/views/layout/admin/sidebar.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/posts/posts.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/public/image.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/user/users.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/views/user/users.phtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +59,19 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/views/layout/admin/sidebar.phtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Model/DatabaseConnection.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Model/Image.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Model/Auth.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Model/Posts.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/config/config.ini" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Controllers/UserController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Controllers/HomeController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="PhpTemplates">
+    <option name="NEW_PHP_FILE_LAST_EXTENSION" value="phtml" />
+  </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 8.0" />
   <component name="ProjectId" id="1zUvcuPu0lusFcnzhQGwOduQzEL" />
   <component name="ProjectViewState">
@@ -44,12 +81,18 @@
     <option name="showMembers" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/views/user" />
+    <property name="database.data.extractors.current.export.id" value="SQL Inserts" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -96,7 +139,12 @@
       <workItem from="1634574048373" duration="9204000" />
       <workItem from="1634640710217" duration="12415000" />
       <workItem from="1634677638676" duration="4694000" />
-      <workItem from="1634713634187" duration="2953000" />
+      <workItem from="1634713634187" duration="13727000" />
+      <workItem from="1634731524265" duration="13617000" />
+      <workItem from="1634760029756" duration="8250000" />
+      <workItem from="1634799924496" duration="13852000" />
+      <workItem from="1634817981850" duration="9688000" />
+      <workItem from="1634840538906" duration="7250000" />
     </task>
     <task id="LOCAL-00001" summary="New changes">
       <created>1634489189328</created>
@@ -119,6 +167,7 @@
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="New changes" />
     <MESSAGE value="User and profile edit" />
     <option name="LAST_COMMIT_MESSAGE" value="User and profile edit" />

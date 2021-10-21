@@ -78,6 +78,18 @@ class Validator
         }
     }
 
+    public function min($value, $min, $message) {
+        if ($value < $min) {
+            $this->errors[] = $message;
+        }
+    }
+
+    public function max($value, $max, $message) {
+        if ($value > $max) {
+            $this->errors[] = $message;
+        }
+    }
+
     public function customValidation($value, \Closure $validation)
     {
 

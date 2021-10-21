@@ -1,0 +1,39 @@
+<?php
+/**
+ * @var array $errors
+ * @var array $post
+ */
+$errors = $_GET['errors'] ?? [];
+?>
+
+<h2>Create new Blog entry</h2>
+
+<form method="post" enctype="multipart/form-data">
+    <div class="form-group mb-3">
+        <label for="titleInput">Post Title</label>
+        <input type="text" id="titleInput" class="form-control" name="title" placeholder="The post title" value="<?= $post['title'] ?>">
+    </div>
+    <div class="form-group mb-3">
+        <label for="descriptionInput">Description</label>
+        <textarea rows="10" id="descriptionInput" class="form-control" name="description" placeholder="Type your post body here"><?= $post['description'] ?></textarea>
+    </div>
+    <div class="form-group mb-3">
+        <label for="imageInput">Post Image</label>
+        <div class="row mb-2">
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <img class="img-thumbnail" src="image.php?img=<?= $post['image'] ?>">
+            </div>
+        </div>
+        <input accept="image/*" type="file" id="imageInput" class="form-control-file" name="image" placeholder="Type your post body here">
+        <small class="form-text text-muted">Only valid image formats allowed (PNG JPG JPEG TIFF WEBP). Max allowed file size is 4MB.</small>
+    </div>
+    <?php if (!empty($errors)): ?>
+        <div class="alert alert-danger">
+            <?php foreach ($errors as $error): ?>
+                <?= $error; ?><br>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+    <button class="btn btn-success" type="submit"><i class="fa fa-pencil"></i> Edit Post</button>
+    <a href="index.php?page=post&action=my_posts" class="btn btn-secondary"><i class="fa fa-backward"></i> Go Back</a>
+</form>

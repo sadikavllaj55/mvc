@@ -1,0 +1,19 @@
+<?php
+/**
+ * @var array $post
+ */
+?>
+<div class="row">
+    <div class="col-lg-9">
+        <section class="post">
+            <h2><?= $post['title'] ?></h2>
+            <figure class="img-thumbnail">
+                <img class="figure-img img-fluid rounded" src="image.php?img=<?= $post['image'] ?>">
+                <figcaption class="figure-caption"><?= $post['title'] ?></figcaption>
+            </figure>
+            <article>
+                <p><?= nl2br($post['description']) ?></p>
+            </article>
+        </section>
+    </div>
+</div>

@@ -1,7 +1,7 @@
 <?php
 /**
  * @var array $users
- * @var array $user
+ * @var array $current_user
  */
 $error = $_GET['error'] ?? null;
 ?>
@@ -26,18 +26,18 @@ $error = $_GET['error'] ?? null;
                     </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($users as $u): ?>
+                    <?php foreach ($users as $user): ?>
                         <tr>
-                            <td><?= $u['id'] ?></td>
-                            <td><?= $u['username'] ?></td>
-                            <td><?= $u['email'] ?></td>
-                            <td><?= $u['role'] ?></td>
+                            <td><?= $user['id'] ?></td>
+                            <td><?= $user['username'] ?></td>
+                            <td><?= $user['email'] ?></td>
+                            <td><?= $user['role'] ?></td>
                             <td>
-                                <?php if ($u['id'] != $user['id']): ?>
+                                <?php if ($user['id'] != $current_user['id']): ?>
                                 <div style="display:flex;">
-                                    <a class="btn btn-warning mr-2" href="index.php?page=user&action=edit&id=<?= $u['id'] ?>"><i class="fa fa-edit"></i> Edit</a>
+                                    <a class="btn btn-warning mr-2" href="index.php?page=user&action=edit&id=<?= $user['id'] ?>"><i class="fa fa-edit"></i> Edit</a>
                                     <form method="post" action="index.php?page=user&action=delete" class="mr-2">
-                                        <input type="hidden" name="id" value="<?= $u['id'] ?>">
+                                        <input type="hidden" name="id" value="<?= $user['id'] ?>">
                                         <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button>
                                     </form>
                                 </div>
