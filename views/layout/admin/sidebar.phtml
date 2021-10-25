@@ -2,8 +2,23 @@
 /**
  * @var array $current_user
  */
-$page = $_GET['page'];
-$action = $_GET['action'] ?? '';
+
+/**
+ * @param $controller
+ * @param $ac
+ * @return bool
+ */
+function is_page($controller, $ac = null) {
+    $page = $_GET['page'];
+    $action = $_GET['action'] ?? '';
+
+    if ($ac == null) {
+        return $page == $controller;
+    }
+
+    return $page == $controller && $action == $ac;
+}
+
 ?>
 <nav id="sidebar">
     <h1 class="text-center"><a href="index.php?page=dashboard" class="logo">Home</a></h1>
@@ -15,31 +30,36 @@ $action = $_GET['action'] ?? '';
     </div>
     <div class="p-4">
         <ul class="list-unstyled components mb-5">
-            <li class="active">
+            <li>
+                <a href="<?= WEB_URL ?>index.php?page=main">
+                    <i class="fa fa-file-o"></i> View Site
+                </a>
+            </li>
+            <li class="<?php if (is_page('dashboard', 'profile')):?>active<?php endif; ?>">
                 <a href="index.php?page=dashboard&action=profile">
                     <i class="fa fa-user-circle"></i> <?= $current_user['username'] ?> (<?= $current_user['role'] ?>)
                 </a>
             </li>
             <?php if ($current_user['role'] == 'Admin'): ?>
             <li>
-                <a href="#usersMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle collapsed"><i class="fa fa-user"></i> Users</a>
-                <ul class="list-unstyled collapse" id="usersMenu">
-                    <li>
+                <a href="#usersMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle <?php if (!is_page('user')): ?>collapsed<?php endif; ?>"><i class="fa fa-user"></i> Users</a>
+                <ul class="list-unstyled  <?php if (!is_page('user')): ?>collapse<?php endif; ?>" id="usersMenu">
+                    <li class="<?php if (is_page('user', 'users')):?>active<?php endif; ?>">
                         <a href="index.php?page=user&action=users">List All</a>
                     </li>
                 </ul>
             </li>
             <?php endif; ?>
             <li>
-                <a href="#postsMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle collapsed"><i class="fa fa-newspaper-o"></i> Posts</a>
-                <ul class="list-unstyled collapse" id="postsMenu">
-                    <li>
+                <a href="#postsMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle <?php if (!is_page('post')): ?>collapsed<?php endif; ?>"><i class="fa fa-newspaper-o"></i> Posts</a>
+                <ul class="list-unstyled <?php if (!is_page('post')): ?>collapse<?php endif; ?>" id="postsMenu">
+                    <li class="<?php if (is_page('post', 'posts')):?>active<?php endif; ?>">
                         <a href="index.php?page=post&action=posts">All Posts</a>
                     </li>
-                    <li>
+                    <li class="<?php if (is_page('post', 'my_posts')):?>active<?php endif; ?>">
                         <a href="index.php?page=post&action=my_posts">My Posts</a>
                     </li>
-                    <li>
+                    <li class="<?php if (is_page('post', 'new')):?>active<?php endif; ?>">
                         <a href="index.php?page=post&action=new">New Post</a>
                     </li>
                 </ul>

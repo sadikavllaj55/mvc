@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Admin;
 
+use App\Controllers\BaseController;
 use App\Model\Auth;
 use App\View\Template;
 use App\Model\Users;
@@ -14,7 +15,7 @@ class UserController extends BaseController
         $auth = new Auth();
 
         if ($auth->getCurrentUser()['role_id'] != 1) {
-            $this->redirect('dashboard', 'index');
+            $this->redirect('afterlogin', 'index', ['error' => 'You don\'t have access for this action']);
         }
 
         $action = $_GET['action'] ?? 'index';

@@ -4,6 +4,7 @@
  */
 ?>
 
+<h2>My Posts</h2>
 <?php if (count($posts) == 0): ?>
     <div class="alert alert-warning alert-icon">
         <span>There are no posts</span>
@@ -29,7 +30,7 @@
                     <h5>
                         <a href="index.php?page=post&action=view&id=<?= $post['id']; ?>"><?= $post['title']; ?></a>
                     </h5>
-                    <div class="mb-1"><i class="fa fa-eye"></i> <span class="ms-1 views">200</span></div>
+                    <div class="mb-1"><i class="fa fa-eye"></i> <span class="ms-1 views"><?= $post['visits'] ?></span></div>
                     <div class="mb-1">
                         Author: <strong><?= $post['author']; ?></strong>
                     </div>

@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Admin;
 
+use App\Controllers\BaseController;
 use App\Model\Auth;
+use App\Model\Posts;
 use App\Model\Users;
 use App\Validation\Validator;
 use App\View\Template;
@@ -43,8 +45,16 @@ class DashboardController extends BaseController
         $users = new Users();
         $totalUsers = $users->countUsers();
 
+        $posts = new Posts();
+        $totalPosts = $posts->countPosts();
+        $totalVisits = $posts->countVisits();
+
         $view = new Template('admin/base');
-        $view->view('dashboard/index', ['totals' => $totalUsers]);
+        $view->view('dashboard/index', ['stats' => [
+            'users' => $totalUsers,
+            'posts' => $totalPosts,
+            'visits' => $totalVisits
+        ]]);
     }
 
     public function showProfile()

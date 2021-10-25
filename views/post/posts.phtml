@@ -2,10 +2,17 @@
 /**
  * @var array $posts
  * @var array $current_user
- * @var bool $can_delete
  */
+$is_admin = $current_user['role_id'] == 1;
+$error = $_GET['error'] ?? null;
 ?>
 
+<h2>All Posts</h2>
+<?php if ($error != null): ?>
+    <div class="alert alert-warning">
+        <?= $error ?>
+    </div>
+<?php endif; ?>
 <?php if (count($posts) == 0): ?>
 <div class="alert alert-warning alert-icon">
     <span>There are no posts</span>
@@ -20,14 +27,14 @@
                 </a>
             </div>
             <div class="col-md-9">
-                <div style="position: absolute; right: 0">
-                    <?php if ($can_delete): ?>
+                <div class="post-buttons">
+                    <?php if ($is_admin || $current_user['id'] == $post['user_id']): ?>
                     <form method="post" action="index.php?page=post&action=delete" class="mr-2">
                         <button type="submit" class="btn btn-danger ms-2 delete-post-btn"><i class="fa fa-trash-o"></i></button>
                         <input type="hidden" name="id" value="<?= $post['id']; ?>">
                     </form>
                     <?php endif; ?>
-                    <?php if ($current_user['id'] == $post['user_id']): ?>
+                    <?php if ($is_admin || $current_user['id'] == $post['user_id']): ?>
                     <a class="btn btn-warning mt-1" href="index.php?page=post&action=edit&id=<?= $post['id'] ?>"><i class="fa fa-pencil"></i></a>
                     <?php endif; ?>
                 </div>
@@ -35,7 +42,7 @@
                     <h5>
                         <a href="index.php?page=post&action=view&id=<?= $post['id']; ?>"><?= $post['title']; ?></a>
                     </h5>
-                    <div class="mb-1"><i class="fa fa-eye"></i> <span class="ms-1 views">200</span></div>
+                    <div class="mb-1"><i class="fa fa-eye"></i> <span class="ms-1 views"><?= $post['visits'] ?></span></div>
                     <div class="mb-1">
                         Author: <strong><?= $post['author']; ?></strong>
                     </div>

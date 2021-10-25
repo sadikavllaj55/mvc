@@ -2,13 +2,14 @@
 
 namespace App\Controllers;
 
+use App\Controllers\BaseController;
 use App\Model\Auth;
 use App\Model\DatabaseConnection;
 use App\Model\Roles;
 use App\Validation\Validator;
 use App\View\Template;
 
-class HomeController extends BaseController
+class CategoryController extends BaseController
 {
     public $db;
 
@@ -21,7 +22,7 @@ class HomeController extends BaseController
     }
 
     /**
-     * @return mixed|void
+     * @return void
      */
     public function control()
     {
@@ -29,11 +30,6 @@ class HomeController extends BaseController
 
         if ($action == 'logout') {
             $this->logout();
-        }
-
-        $auth = new Auth();
-        if ($auth->isLoggedIn()) {
-            $this->redirect('dashboard', 'index');
         }
 
         if ($action == 'index') {
@@ -49,7 +45,11 @@ class HomeController extends BaseController
         }
 
         if ($action == 'register') {
-            $this->register();
+            if ($this->isGet()) {
+                $this->showRegister();
+            } else {
+                $this->register();
+            }
         }
     }
 
@@ -58,9 +58,8 @@ class HomeController extends BaseController
      */
     public function showIndex()
     {
-        $view = new Template();
-        $auth = new Auth();
-        $view->view('home/index', ['roles' => $auth->getRoleList()]);
+        $view = new Template('frontend/base');
+        $view->view('main/index');
     }
 
     /**
@@ -70,6 +69,49 @@ class HomeController extends BaseController
     {
         $view = new Template();
         $view->view('home/login');
+    }
+
+    /**
+     * if true redirect index else home login
+     */
+    private function login()
+    {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+
+        $auth = new Auth();
+        $validation = new Validator();
+
+        $validation->notEmpty($username,'Username should be not empty');
+        $validation->notEmpty($password,'Password should be not empty');
+
+        $username_exists = $auth->checkUsername($username);
+
+        if(!$username_exists) {
+            $validation->addError('The specified account does not exist!');
+        }
+
+        if (!$validation->isValid()) {
+            $this->redirect('home', 'login', ['errors' => $validation->getErrors()]);
+        }
+
+        $success = $auth->login($username, $password);
+
+        if ($success) {
+            $this->redirect('main', 'index');
+        } else {
+            $validation->addError('Wrong password!');
+            $this->redirect('main', 'login', ['errors' => $validation->getErrors()]);
+        }
+    }
+
+    /**
+     *
+     */
+    public function showRegister()
+    {
+        $view = new Template();
+        $view->view('home/index');
     }
 
     /**
@@ -121,45 +163,11 @@ class HomeController extends BaseController
             $login = $auth->login($username, $password);
 
             if ($login) {
-                $this->redirect('home', 'login');
+                $this->redirect('main', 'index');
             }
         }
 
-        $this->redirect('home', 'login');
-    }
-
-    /**
-     * if true redirect index else home login
-     */
-    private function login()
-    {
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-
-        $auth = new Auth();
-        $validation = new Validator();
-
-        $validation->notEmpty($username,'Username should be not empty');
-        $validation->notEmpty($password,'Password should be not empty');
-
-        $username_exists = $auth->checkUsername($username);
-
-        if(!$username_exists) {
-            $validation->addError('The specified account does not exist!');
-        }
-
-        if (!$validation->isValid()) {
-            $this->redirect('home', 'login', ['errors' => $validation->getErrors()]);
-        }
-
-        $success = $auth->login($username, $password);
-
-        if ($success) {
-            $this->redirect('dashboard', 'index');
-        } else {
-            $validation->addError('Wrong password!');
-            $this->redirect('home', 'login', ['errors' => $validation->getErrors()]);
-        }
+        $this->redirect('main', 'login');
     }
 
     /**
@@ -169,6 +177,6 @@ class HomeController extends BaseController
         $auth = new Auth();
         $auth->logout();
 
-        $this->redirect('home','login');
+        $this->redirect('main','login');
     }
 }

@@ -1,10 +1,28 @@
 <?php
 /**
  * @var array $post
+ * @var array $comments
+ * @var array $current_user
  */
+$errors = $_GET['errors'] ?? null;
+$success = $_GET['success'] ?? null;
+
+if (is_array($errors)) {
+    $errors = implode('<br>', $errors);
+}
 ?>
 <div class="row">
     <div class="col-lg-9">
+        <?php if ($errors != null): ?>
+            <div class="alert alert-warning">
+                <?= $errors ?>
+            </div>
+        <?php endif; ?>
+        <?php if ($success != null): ?>
+            <div class="alert alert-success">
+                <?= $success ?>
+            </div>
+        <?php endif; ?>
         <section class="post">
             <h2><?= $post['title'] ?></h2>
             <figure class="img-thumbnail">
@@ -15,5 +33,32 @@
                 <p><?= nl2br($post['description']) ?></p>
             </article>
         </section>
+        <form method="post" action="index.php?page=comment&action=add">
+            <textarea name="description" class="form-control mt-2 mb-2" placeholder="Write a comment"></textarea>
+            <input type="hidden" name="post_id" value="<?= $post['id'] ;?>">
+            <button type="submit" name="comments-submit" class="btn btn-primary">Comment</button>
+        </form>
+        <div class="mt-2">
+            <?php foreach ($comments as $comment):?>
+                <div class="card p-3 mb-2">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="user d-flex flex-row align-items-center">
+                            <span>
+                                <small class="font-weight-bold text-primary"><?= $comment['author'] ;?></small>
+                            </span>
+                        </div>
+                        <small><?= $comment['published'] ;?></small>
+                    </div>
+                    <p class="mt-2"><?= $comment['description'] ;?></p>
+                    <?php if ($comment['author_id'] == $current_user['id']): ?>
+                        <form action="index.php?page=comment&action=delete" method="post">
+                            <input type="hidden" name="id" value="<?= $comment['id'] ?>">
+                            <input type="hidden" name="post_id" value="<?= $post['id'] ;?>">
+                            <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i> Delete comment</button>
+                        </form>
+                    <?php endif; ?>
+                </div>
+            <?php endforeach;?>
+        </div>
     </div>
 </div>

@@ -1,0 +1,31 @@
+<?php
+/**
+ * @var ?array $current_user
+ * @var string $template
+ */
+$error = $_GET['error'] ?? null;
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Frontpage" />
+    <meta name="author" content="Sadik" />
+    <title>Homepage</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link href="<?= WEB_URL ?>css/styles.css" rel="stylesheet">
+</head>
+<body>
+<?php include TEMPLATES . 'layout/frontend/header.phtml'; ?>
+<!-- Page Content-->
+<div class="container px-4 px-lg-5">
+<?php include TEMPLATES . $template . '.phtml'; ?>
+</div>
+<?php include TEMPLATES . 'layout/frontend/footer.phtml'; ?>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="<?= WEB_URL ?>js/scripts.js"></script>
+</body>
+</html>

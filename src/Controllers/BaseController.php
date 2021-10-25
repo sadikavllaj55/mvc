@@ -10,9 +10,9 @@ abstract class BaseController
     /**
      * Redirect to url, or controller action
      * Ex. /home/register
-     * @param $controller string
-     * @param $action string
-     * @param $url_params array
+     * @param string $controller
+     * @param string $action
+     * @param array $url_params
      */
     public function redirect($controller, $action, $url_params = [])
     {

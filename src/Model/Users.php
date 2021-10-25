@@ -84,12 +84,7 @@ class Users
 
     public function countUsers()
     {
-        $nRows = $this->db->query('select count(*) from users')->fetchColumn();
-        $key = ['count'];
-        $nRows = array($nRows);
-        $assocArray = array_combine($key,$nRows);
-
-        return $assocArray;
+        return $this->db->query('select count(*) from users')->fetchColumn();
 
     }
 

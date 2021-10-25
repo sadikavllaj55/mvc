@@ -3,7 +3,6 @@
 require_once '../autoload.php';
 
 use App\Controllers\BaseController;
-use App\Controllers\HomeController;
 use App\View\Template;
 
 define('ROOT_DIR', realpath(__DIR__ . '/../'));
@@ -13,8 +12,9 @@ define('MODEL', realpath(ROOT_DIR . '/src/Model') . '/');
 define('UPLOAD_DIR', ROOT_DIR . '/uploads/');
 define('CONFIG', parse_ini_file(ROOT_DIR . '/config/config.ini', true));
 define('BASE_URL', CONFIG['web']['url']);
+define('WEB_URL', CONFIG['web']['url']);
 
-$page = $_GET['page'] ?? 'home';
+$page = $_GET['page'] ?? 'main';
 
 $controllerClass = ucfirst($page) . 'Controller';
 $controllerFile = CONTROLLERS . $controllerClass . '.php';

@@ -90,11 +90,6 @@ class Validator
         }
     }
 
-    public function customValidation($value, \Closure $validation)
-    {
-
-    }
-
     public function getErrors()
     {
         return $this->errors;

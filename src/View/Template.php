@@ -14,4 +14,9 @@ class Template
         extract($variables);
         include TEMPLATES . 'layout/' . $this->layout .  '.phtml';
     }
+
+    function viewAnother($template, $variables = []) {
+        extract($variables);
+        include TEMPLATES . 'afterlogin/' . $this->layout .  '.phtml';
+    }
 }

@@ -111,3 +111,8 @@ a[data-toggle="collapse"] {
 .small-box {
     color: #fff;
 }
+
+.post-buttons {
+    position: absolute;
+    right: 0;
+}
