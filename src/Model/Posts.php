@@ -25,7 +25,7 @@ class Posts
     public function insertPost($author, $title, $description, $image_id, $category_id)
     {
         $query = $this->db->prepare('
-            INSERT INTO posts (user_id,title,description,image_id,category_id) 
+            INSERT INTO posts (user_id, title, description, image_id, category_id) 
             VALUES (:author, :title, :description, :image_id, :categoryId)'
         );
         $query->bindParam(':author', $author);
@@ -45,7 +45,7 @@ class Posts
             FROM posts    
                 LEFT JOIN users ON posts.user_id = users.id
                 LEFT JOIN images ON posts.image_id = images.id
-            ORDER BY posts.created_at DESC '
+            ORDER BY posts.created_at DESC'
         );
 
         return $query->fetchAll(PDO::FETCH_ASSOC);
@@ -132,27 +132,39 @@ class Posts
         return $this->db->query('SELECT SUM(visits) FROM posts')->fetchColumn();
     }
 
-    public function getPostByVisits()
-    {
-        return $this->db->query('SELECT * FROM posts ORDER BY visits DESC LIMIT 1')->fetch(PDO::FETCH_ASSOC);
-    }
-
-    public function getByCategorie($id)
+    public function getByCategory($id)
     {
         $query = $this->db->prepare('SELECT posts.id , posts.title , posts.created_at, posts.description, 
-                users.username as author, posts.user_id, posts.image_id, images.path as image, posts.visits
+                users.username as author, posts.user_id, posts.image_id, images.path as image, posts.visits,
+                categories.category, posts.category_id
             FROM posts    
                 LEFT JOIN users ON posts.user_id = users.id 
                 LEFT JOIN images ON posts.image_id = images.id
                 LEFT JOIN categories ON posts.category_id = categories.id
             WHERE posts.category_id = :id 
-            ORDER BY created_at'
+            ORDER BY created_at DESC'
         );
         $query->bindParam(':id', $id);
 
         $query->execute();
 
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getTopPost() {
+        $query = $this->db->query('SELECT posts.id , posts.title , posts.created_at, posts.description, 
+                users.username as author, posts.user_id, posts.image_id, images.path as image, posts.visits,
+                categories.category, posts.category_id
+            FROM posts    
+                LEFT JOIN users ON posts.user_id = users.id 
+                LEFT JOIN images ON posts.image_id = images.id
+                LEFT JOIN categories ON posts.category_id = categories.id
+            ORDER BY visits DESC
+            LIMIT 0, 1'
+        );
+
         return $query->fetch(PDO::FETCH_ASSOC);
+
     }
 
     public function get_posts_per_page(int $page = 1, int $size = 3)
@@ -169,5 +181,4 @@ class Posts
     {
         return (int)ceil(($count_posts()) / $size);
     }
-
 }

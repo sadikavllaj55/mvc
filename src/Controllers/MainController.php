@@ -4,7 +4,9 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Model\Auth;
+use App\Model\Category;
 use App\Model\DatabaseConnection;
+use App\Model\Posts;
 use App\Model\Roles;
 use App\Validation\Validator;
 use App\View\Template;
@@ -58,8 +60,18 @@ class MainController extends BaseController
      */
     public function showIndex()
     {
+        $postModel = new Posts();
+        $posts = $postModel->getListPosts();
+        $top_post = $postModel->getTopPost();
+
+        $categories = Category::getCategoryList();
+
         $view = new Template('frontend/base');
-        $view->view('main/index');
+        $view->view('frontend/main/index', [
+            'posts' => $posts,
+            'categories' => $categories,
+            'top_post' => $top_post
+        ]);
     }
 
     /**

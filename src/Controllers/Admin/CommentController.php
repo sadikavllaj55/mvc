@@ -43,7 +43,7 @@ class CommentController extends BaseController
                 $this->redirect('post', 'view', ['id' => $post_id, 'error' => 'Could not find the user']);
             }
 
-            $template->view('comment/confirm_delete', ['comment' => $comment]);
+            $template->view('admin/comment/confirm_delete', ['comment' => $comment]);
         } else {
             $deleted = $model->deleteById($comment_id);
 

@@ -65,7 +65,7 @@ class PostController extends BaseController
         $posts = $model->getListPosts();
 
         $view = new Template('admin/base');
-        $view->view('post/posts', ['posts' => $posts]);
+        $view->view('admin/post/posts', ['posts' => $posts]);
     }
 
     public function showEditPost()
@@ -85,7 +85,7 @@ class PostController extends BaseController
         }
 
         $template = new Template('admin/base');
-        $template->view('post/edit', ['post' => $post]);
+        $template->view('admin/post/edit', ['post' => $post]);
     }
 
     /**
@@ -154,7 +154,7 @@ class PostController extends BaseController
         $posts = $model->getUserPosts($user['id']);
 
         $view = new Template('admin/base');
-        $view->view('post/my_posts', ['posts' => $posts]);
+        $view->view('admin/post/my_posts', ['posts' => $posts]);
     }
 
     public function viewPost()
@@ -173,14 +173,14 @@ class PostController extends BaseController
         $comments = $comment_model->getPostComments($post_id);
 
         $template = new Template('admin/base');
-        $template->view('post/view', ['post' => $post, 'comments' => $comments]);
+        $template->view('admin/post/view', ['post' => $post, 'comments' => $comments]);
     }
 
     public function showNewPost()
     {
         $template = new Template('admin/base');
         $categories = new Category();
-        $template->view('post/new', ['categories' => $categories->getCategoryList()]);
+        $template->view('admin/post/new', ['categories' => $categories->getCategoryList()]);
     }
 
     /**
@@ -248,7 +248,7 @@ class PostController extends BaseController
 
         if (!$confirm) {
             $template = new Template('admin/base');
-            $template->view('post/confirm_delete', ['to_delete' => $post]);
+            $template->view('admin/post/confirm_delete', ['to_delete' => $post]);
         } else {
             $deleted = $model->deletePost($post_id, $user['id']);
 

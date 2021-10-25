@@ -52,7 +52,7 @@ class UserController extends BaseController
             $this->redirect('user', 'users', ['error' => 'User does not exist!']);
         }
 
-        $view->view('user/edit_user', ['to_edit' => $user]);
+        $view->view('admin/user/edit_user', ['to_edit' => $user]);
     }
 
     public function showAllUsers()
@@ -60,7 +60,7 @@ class UserController extends BaseController
         $model = new Users();
         $users = $model->getList();
         $view = new Template('admin/base');
-        $view->view('user/users', ['users' => $users]);
+        $view->view('admin/user/users', ['users' => $users]);
     }
 
     public function editUser()
@@ -119,7 +119,7 @@ class UserController extends BaseController
 
                 $this->redirect('user', 'users', ['error' => 'Could not find the user']);
             }
-            $template->view('user/confirm_delete', ['to_delete' => $user]);
+            $template->view('admin/user/confirm_delete', ['to_delete' => $user]);
         } else {
             $deleted = $model->deleteById($user_id);
 

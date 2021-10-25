@@ -9,7 +9,7 @@ use App\Model\Roles;
 use App\Validation\Validator;
 use App\View\Template;
 
-class CategoryController extends BaseController
+class BlogController extends BaseController
 {
     public $db;
 
@@ -28,17 +28,17 @@ class CategoryController extends BaseController
     {
         $action = $_GET['action'] ?? 'index';
 
-        if ($action == 'index') {
-            $this->showIndex();
+        if ($action == 'view') {
+            $this->viewPost();
         }
     }
 
     /**
      *
      */
-    public function showIndex()
+    public function viewPost()
     {
         $view = new Template('frontend/base');
-        $view->view('frontend/category/index');
+        $view->view('frontend/blog/view');
     }
 }

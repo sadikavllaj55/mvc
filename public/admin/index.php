@@ -28,12 +28,12 @@ try {
     } else {
         http_response_code(404);
         $view = new Template('error');
-        $view->view('error/404');
+        $view->view('frontend/error/404');
         exit;
     }
 } catch (Throwable $e) {
     http_response_code(500);
     $view = new Template('error');
-    $view->view('error/500', ['message' => $e->getMessage(), 'trace' => $e->getTraceAsString()]);
+    $view->view('frontend/error/500', ['message' => $e->getMessage(), 'trace' => $e->getTraceAsString()]);
     exit;
 }
