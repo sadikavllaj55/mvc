@@ -14,8 +14,8 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
                     <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
-                        <?php foreach ($categories as $category): ?>
-                        <li><a class="dropdown-item" href="index.php?page=blog&action=category&id=<?= $category['id'] ?>"><?= $category['category'] ?></a></li>
+                        <?php foreach ($categories as $cat): ?>
+                        <li><a class="dropdown-item" href="index.php?page=blog&action=category&id=<?= $cat['id'] ?>"><?= $cat['category'] ?></a></li>
                         <?php endforeach; ?>
                     </ul>
                 </li>

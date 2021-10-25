@@ -4,7 +4,7 @@
  * @var array $top_post
  */
 ?>
-<!-- Heading Row-->
+<!-- Top Post-->
 <div class="row gx-4 gx-lg-5 align-items-center my-5">
     <div class="col-lg-7"><img class="img-fluid rounded mb-4 mb-lg-0" src="image.php?img=<?= $top_post['image'] ?>"></div>
     <div class="col-lg-5">
@@ -13,7 +13,7 @@
         <a class="btn btn-primary" href="index.php?page=blog&action=view&id=<?= $top_post['id'] ?>">View Post</a>
     </div>
 </div>
-<!-- Content Row-->
+<!-- Post List-->
 <div class="row gx-3 gx-lg-3" >
     <?php foreach ($posts as $post): ?>
     <div class="col-md-4 mb-5">

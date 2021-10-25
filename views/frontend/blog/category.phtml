@@ -1,0 +1,23 @@
+<?php
+/**
+ * @var array $category
+ * @var array $posts
+ */
+?>
+<h2><?= $category['category'] ?></h2>
+<div class="row gx-3 gx-lg-3" >
+    <?php foreach ($posts as $post): ?>
+        <div class="col-md-4 mb-5">
+            <div class="card h-100">
+                <div class="card-body">
+                    <img class="img-fluid rounded mb-4 mb-lg-0" src="image.php?img=<?= $post['image'] ?>" alt="<?= $post['title'] ?>" />
+                    <h4 class="card-title"><?= $post['title'] ?></h4>
+                    <p class="card-text"><?= substr($post['description'], 0, 200) ?>...</p>
+                </div>
+                <div class="card-footer">
+                    <a class="btn btn-primary btn-sm" href="index.php?page=blog&action=view&id=<?= $post['id'] ?>">More Info</a>
+                </div>
+            </div>
+        </div>
+    <?php endforeach; ?>
+</div>

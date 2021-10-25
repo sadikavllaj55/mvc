@@ -64,12 +64,9 @@ class MainController extends BaseController
         $posts = $postModel->getListPosts();
         $top_post = $postModel->getTopPost();
 
-        $categories = Category::getCategoryList();
-
         $view = new Template('frontend/base');
         $view->view('frontend/main/index', [
             'posts' => $posts,
-            'categories' => $categories,
             'top_post' => $top_post
         ]);
     }

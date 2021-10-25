@@ -5,33 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b8c55383-8808-4a90-b494-e36d5bd22feb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Controllers/PostController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/Image.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/Posts.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/post/confirm_delete.phtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/post/edit.phtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/post/my_posts.phtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/post/new.phtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/post/posts.phtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/post/view.phtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/frontend/blog/category.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/14b493ac-72d7-4234-842f-c2e205428863.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/14b493ac-72d7-4234-842f-c2e205428863/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/14b493ac-72d7-4234-842f-c2e205428863/storage_v2/_src_/schema/mysql.osA4Bg.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/14b493ac-72d7-4234-842f-c2e205428863/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/14b493ac-72d7-4234-842f-c2e205428863/storage_v2/_src_/schema/sys.zb4BAA.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/2de94d5b-516d-4798-bc22-83b7cb15268e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/2de94d5b-516d-4798-bc22-83b7cb15268e.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/mvc.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mvc.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/admin.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/DashboardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/DashboardController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Validation/Validator.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Validation/Validator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/dashboard/index.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/views/dashboard/index.phtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/error/500.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/views/error/500.phtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/layout/admin/base.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/views/layout/admin/base.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controllers/BlogController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/BlogController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controllers/MainController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/MainController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/frontend/main/index.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/views/frontend/main/index.phtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/layout/admin/sidebar.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/views/layout/admin/sidebar.phtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/posts/posts.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/public/image.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/user/users.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/views/user/users.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/layout/frontend/base.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/views/layout/frontend/base.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/layout/frontend/header.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/views/layout/frontend/header.phtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,16 +50,6 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/views/layout/admin/sidebar.phtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Model/DatabaseConnection.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Model/Image.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Model/Auth.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Model/Posts.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/config/config.ini" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Controllers/UserController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Controllers/HomeController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-  </component>
   <component name="PhpTemplates">
     <option name="NEW_PHP_FILE_LAST_EXTENSION" value="phtml" />
   </component>
@@ -87,7 +68,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="database.data.extractors.current.export.id" value="SQL Inserts" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Controllers" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -102,17 +83,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/views/user" />
+      <recent name="$PROJECT_DIR$/src/Controllers" />
+      <recent name="$PROJECT_DIR$/public/admin" />
+      <recent name="$PROJECT_DIR$/views/layout/frontend" />
       <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/views/layout" />
-      <recent name="$PROJECT_DIR$/views/error" />
+      <recent name="$PROJECT_DIR$/src/Model" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/views/layout/user" />
-      <recent name="$PROJECT_DIR$/views/layout/admin" />
+      <recent name="$PROJECT_DIR$/views/frontend" />
+      <recent name="$PROJECT_DIR$/views/admin" />
       <recent name="$PROJECT_DIR$/views" />
-      <recent name="$PROJECT_DIR$/views/layout" />
-      <recent name="$PROJECT_DIR$/src/Validation" />
+      <recent name="$PROJECT_DIR$/public/css/admin" />
+      <recent name="$PROJECT_DIR$/public/css" />
     </key>
   </component>
   <component name="RunManager">
@@ -145,6 +127,12 @@
       <workItem from="1634799924496" duration="13852000" />
       <workItem from="1634817981850" duration="9688000" />
       <workItem from="1634840538906" duration="7250000" />
+      <workItem from="1634849838953" duration="3072000" />
+      <workItem from="1634887438530" duration="7057000" />
+      <workItem from="1634904888323" duration="2980000" />
+      <workItem from="1635106921719" duration="8228000" />
+      <workItem from="1635181689363" duration="601000" />
+      <workItem from="1635187622349" duration="9606000" />
     </task>
     <task id="LOCAL-00001" summary="New changes">
       <created>1634489189328</created>
@@ -160,16 +148,32 @@
       <option name="project" value="LOCAL" />
       <updated>1634676413497</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Base commit">
+      <created>1635192592299</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1635192592299</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Base commit">
+      <created>1635197308235</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1635197308235</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="New changes" />
     <MESSAGE value="User and profile edit" />
-    <option name="LAST_COMMIT_MESSAGE" value="User and profile edit" />
+    <MESSAGE value="Base commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Base commit" />
   </component>
 </project>

@@ -3,6 +3,8 @@
  * @var ?array $current_user
  * @var string $template
  */
+
+$categories = App\Model\Category::getCategoryList();
 $error = $_GET['error'] ?? null;
 ?>
 <!DOCTYPE html>
