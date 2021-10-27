@@ -61,7 +61,7 @@ class HomeController extends BaseController
     {
         $view = new Template();
         $auth = new Auth();
-        $view->view('home/index', ['roles' => $auth->getRoleList()]);
+        $view->view('admin/home/index', ['roles' => $auth->getRoleList()]);
     }
 
     /**
@@ -70,7 +70,7 @@ class HomeController extends BaseController
     public function showLogin()
     {
         $view = new Template();
-        $view->view('home/login');
+        $view->view('admin/home/login');
     }
 
     /**
@@ -156,7 +156,7 @@ class HomeController extends BaseController
         $success = $auth->login($username, $password);
 
         if ($success) {
-            $this->redirect('frontend', 'index');
+            $this->redirect('dashboard', 'index');
         } else {
             $validation->addError('Wrong password!');
             $this->redirect('home', 'login', ['errors' => $validation->getErrors()]);

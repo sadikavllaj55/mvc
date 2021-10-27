@@ -13,6 +13,7 @@ define('UPLOAD_DIR', ROOT_DIR . '/uploads/');
 define('CONFIG', parse_ini_file(ROOT_DIR . '/config/config.ini', true));
 define('BASE_URL', CONFIG['web']['url']);
 define('WEB_URL', CONFIG['web']['url']);
+define('ADMIN_URL', CONFIG['web']['admin_url']);
 
 $page = $_GET['page'] ?? 'main';
 

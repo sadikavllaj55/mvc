@@ -77,7 +77,7 @@ class MainController extends BaseController
     public function showLogin()
     {
         $view = new Template();
-        $view->view('home/login');
+        $view->view('admin/home/login');
     }
 
     /**
@@ -101,7 +101,7 @@ class MainController extends BaseController
         }
 
         if (!$validation->isValid()) {
-            $this->redirect('home', 'login', ['errors' => $validation->getErrors()]);
+            $this->redirect('main', 'login', ['errors' => $validation->getErrors()]);
         }
 
         $success = $auth->login($username, $password);
@@ -120,7 +120,7 @@ class MainController extends BaseController
     public function showRegister()
     {
         $view = new Template();
-        $view->view('home/index');
+        $view->view('admin/home/index');
     }
 
     /**

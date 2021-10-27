@@ -79,7 +79,7 @@ class Image
         $filename = bin2hex(random_bytes(20));
         $new_filename = $filename . '.' . $image_extension;
 
-        $copied = move_uploaded_file($image_file['tmp_name'], $uploadDir . '/' . $new_filename);
+        $copied = move_uploaded_file($image_file['tmp_name'], $uploadDir . $new_filename);
 
         if ($copied) {
             $image_path = realpath($uploadDir . '/' . $new_filename);

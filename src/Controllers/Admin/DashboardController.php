@@ -50,7 +50,7 @@ class DashboardController extends BaseController
         $totalVisits = $posts->countVisits();
 
         $view = new Template('admin/base');
-        $view->view('dashboard/index', ['stats' => [
+        $view->view('admin/dashboard/index', ['stats' => [
             'users' => $totalUsers,
             'posts' => $totalPosts,
             'visits' => $totalVisits

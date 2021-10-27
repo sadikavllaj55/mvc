@@ -97,6 +97,7 @@ class PostController extends BaseController
 
         $title = $_POST['title'];
         $description = $_POST['description'];
+        $category = $_POST['category_id'];
         $image = $_FILES['image'] ?? [];
         $post_id = $_GET['id'] ?? null;
         $has_image = ($image['name'] ?? '') != '';
