@@ -4,6 +4,8 @@
  * @var string $template
  */
 
+$auth = new \App\Model\Auth();
+$current_user = $auth->getCurrentUser();
 $categories = App\Model\Category::getCategoryList();
 $error = $_GET['error'] ?? null;
 ?>
@@ -15,14 +17,19 @@ $error = $_GET['error'] ?? null;
     <meta name="description" content="Frontpage" />
     <meta name="author" content="Sadik" />
     <title>Homepage</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-    <link href="<?= WEB_URL ?>css/styles.css" rel="stylesheet">
+    <link href="<?= WEB_URL ?>css/bootstrap.css" rel="stylesheet">
+    <link href="<?= WEB_URL ?>css/style.css" rel="stylesheet">
 </head>
 <body>
 <?php include TEMPLATES . 'layout/frontend/header.phtml'; ?>
 <!-- Page Content-->
-<div class="container px-4 px-lg-5">
+<div class="container px-4 px-lg-5 py-4" style="min-height: 400px">
 <?php include TEMPLATES . $template . '.phtml'; ?>
 </div>
 <?php include TEMPLATES . 'layout/frontend/footer.phtml'; ?>

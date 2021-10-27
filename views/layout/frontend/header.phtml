@@ -1,6 +1,7 @@
 <?php
 /**
  * @var array $categories
+ * @var \App\Model\Auth $auth
  */
 ?>
 <!-- Responsive navbar-->
@@ -19,8 +20,14 @@
                         <?php endforeach; ?>
                     </ul>
                 </li>
+                <?php if ($auth->isLoggedIn()): ?>
                 <li class="nav-item"><a class="nav-link" href="<?= ADMIN_URL ?>index.php?page=dashboard">Dashboard</a></li>
+                <?php endif; ?>
             </ul>
+            <?php if (!$auth->isLoggedIn()): ?>
+            <a href="index.php?action=login" class="btn btn-outline-primary me-2">Login</a>
+            <a href="index.php?action=register" class="btn btn-outline-primary">Register</a>
+            <?php endif; ?>
         </div>
     </div>
 </nav>

@@ -26,6 +26,24 @@ abstract class BaseController
     }
 
     /**
+     * Redirect to url, or controller action
+     * Ex. /home/register
+     * @param string $controller
+     * @param string $action
+     * @param array $url_params
+     */
+    public function frontendRedirect($controller, $action, $url_params = [])
+    {
+        $query_string = http_build_query($url_params);
+        $url = WEB_URL . 'index.php?page=' . $controller . '&action=' . $action;
+        if (!empty($query_string)) {
+            $url = WEB_URL . 'index.php?page=' . $controller . '&action=' . $action . '&' . $query_string;
+        }
+        header('Location:' . $url);
+        exit;
+    }
+
+    /**
      * @return string method used uppercase
      */
     public function getMethod()

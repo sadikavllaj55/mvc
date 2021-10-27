@@ -62,7 +62,7 @@ class DashboardController extends BaseController
         $auth = new Auth();
         $user = $auth->getCurrentUser();
         $view = new Template('admin/base');
-        $view->view('user/profile', ['to_edit' => $user]);
+        $view->view('admin/user/profile', ['to_edit' => $user]);
     }
 
     /**

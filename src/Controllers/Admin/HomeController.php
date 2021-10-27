@@ -26,7 +26,7 @@ class HomeController extends BaseController
      */
     public function control()
     {
-        $action = $_GET['action'] ?? 'index';
+        $action = $_GET['action'] ?? 'register';
 
         if ($action == 'logout') {
             $this->logout();
@@ -37,8 +37,12 @@ class HomeController extends BaseController
             $this->redirect('dashboard', 'index');
         }
 
-        if ($action == 'index') {
-            $this->showIndex();
+        if ($action == 'register') {
+            if ($this->isGet()) {
+                $this->showRegister();
+            } else {
+                $this->register();
+            }
         }
 
         if ($action == 'login') {
@@ -48,20 +52,16 @@ class HomeController extends BaseController
                 $this->login();
             }
         }
-
-        if ($action == 'register') {
-            $this->register();
-        }
     }
 
     /**
      *
      */
-    public function showIndex()
+    public function showRegister()
     {
         $view = new Template();
         $auth = new Auth();
-        $view->view('admin/home/index', ['roles' => $auth->getRoleList()]);
+        $view->view('admin/home/register', ['roles' => $auth->getRoleList()]);
     }
 
     /**
@@ -115,14 +115,14 @@ class HomeController extends BaseController
         }
 
         if (!$validation->isValid()) {
-            $this->redirect('home', 'index', ['errors' => $validation->getErrors()]);
+            $this->frontendRedirect('main', 'index', ['errors' => $validation->getErrors()]);
         }
 
         if ($auth->register($username, $email, $password, $account_type)) {
             $login = $auth->login($username, $password);
 
             if ($login) {
-                $this->redirect('home', 'login');
+                $this->frontendRedirect('main', 'login');
             }
         }
 
@@ -150,16 +150,16 @@ class HomeController extends BaseController
         }
 
         if (!$validation->isValid()) {
-            $this->redirect('home', 'login', ['errors' => $validation->getErrors()]);
+            $this->frontendRedirect('main', 'login', ['errors' => $validation->getErrors()]);
         }
 
         $success = $auth->login($username, $password);
 
         if ($success) {
-            $this->redirect('dashboard', 'index');
+            $this->frontendRedirect('main', 'index');
         } else {
             $validation->addError('Wrong password!');
-            $this->redirect('home', 'login', ['errors' => $validation->getErrors()]);
+            $this->frontendRedirect('main', 'login', ['errors' => $validation->getErrors()]);
         }
     }
 
@@ -170,6 +170,6 @@ class HomeController extends BaseController
         $auth = new Auth();
         $auth->logout();
 
-        $this->redirect('home','login');
+        $this->frontendRedirect('main','login');
     }
 }

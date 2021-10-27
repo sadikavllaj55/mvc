@@ -45,8 +45,11 @@ class Posts
             FROM posts    
                 LEFT JOIN users ON posts.user_id = users.id
                 LEFT JOIN images ON posts.image_id = images.id
-            ORDER BY posts.created_at DESC'
+            ORDER BY posts.created_at DESC
+         '
         );
+       /* $query->bindParam(':off', $offset);
+        $query->bindParam(':lim', $limit);*/
 
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -111,10 +114,7 @@ class Posts
         return $query->execute();
     }
 
-    public function countPosts()
-    {
-        return $this->db->query('SELECT COUNT(*) FROM posts')->fetchColumn();
-    }
+
 
     public function addVisit($id)
     {
@@ -167,18 +167,22 @@ class Posts
 
     }
 
-    public function get_posts_per_page(int $page = 1, int $size = 3)
+    public function countPosts()
     {
-        $offset = ($page - 1) * $size;
-        return get_posts($size, $offset);
+        return $this->db->query('SELECT COUNT(*) FROM posts')->fetchColumn();
     }
 
-    /**
-     * @param int $size limiti i percaktuar me lart
-     * @return int numri total i faqeve ku ceil esht vlera e plote +1
-     */
-    public function number_of_pages(int $size)
+    /*public function getPostsPerPage(int $page = 1, int $size = 3)
     {
-        return (int)ceil(($count_posts()) / $size);
+        $offset = ($page - 1) * $size;
+        $list = $this->getListPosts($size, $offset);
+        return $list;
     }
+
+    public function numberOfPages($size)
+    {
+        $count = $this->countPosts();
+        return (int)ceil(($count) / $size);
+    }*/
+
 }

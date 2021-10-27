@@ -120,7 +120,7 @@ class MainController extends BaseController
     public function showRegister()
     {
         $view = new Template();
-        $view->view('admin/home/index');
+        $view->view('admin/home/register');
     }
 
     /**

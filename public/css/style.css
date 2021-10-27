@@ -1,0 +1,20 @@
+html, body {
+    font-family: 'Source Sans Pro', Arial, serif;
+}
+
+h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
+    font-weight: bold;
+}
+
+.nav.nav-divider .nav-item {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.nav.nav-divider .nav-item + .nav-item:before {
+    content: "•";
+    color: inherit;
+    padding-left: 0.65rem;
+    padding-right: 0.75rem;
+    opacity: 0.8;
+}

@@ -206,6 +206,8 @@ class PostController extends BaseController
         $validation->max($image['size'] ?? 0, Image::MAX_FILE_SIZE * 1024 * 1024,
             'The selected image is more than ' . Image::MAX_FILE_SIZE . 'MB.');
 
+        $_SESSION['edit_post'] = $_POST;
+
         if (!$validation->isValid()) {
             $this->redirect('post', 'new', ['errors' => $validation->getErrors()]);
         }

@@ -4,6 +4,16 @@
  * @var array $categories
  */
 $errors = $_GET['errors'] ?? [];
+if (count($errors) > 0) {
+    $post_data = $_SESSION['edit_post'];
+    unset($_SESSION['edit_post']);
+} else {
+    $post_data = [
+        'title' => '',
+        'description' => '',
+        'category' => '',
+    ];
+}
 ?>
 
 <h2>Create new Blog entry</h2>
@@ -11,18 +21,18 @@ $errors = $_GET['errors'] ?? [];
 <form method="post" enctype="multipart/form-data">
     <div class="form-group mb-3">
         <label for="titleInput">Post Title</label>
-        <input type="text" id="titleInput" class="form-control" name="title" placeholder="The post title">
+        <input type="text" id="titleInput" class="form-control" name="title" placeholder="The post title" value="<?= $post_data['title'] ?>">
     </div>
     <div class="form-group mb-3">
         <label for="descriptionInput">Description</label>
-        <textarea rows="10" id="descriptionInput" class="form-control" name="description" placeholder="Type your post body here"></textarea>
+        <textarea rows="10" id="descriptionInput" class="form-control" name="description" placeholder="Type your post body here"><?= $post_data['description'] ?></textarea>
     </div>
     <div class="form-group">
         <label for="inputRole">Select Category</label>
         <select id="type" name="category" class="form-control mb-3" id="inputRole">
             <option value="0">Select Category</option>
             <?php foreach ($categories as $category): ?>
-                <option value="<?= $category['id'] ?>"><?= $category['category'] ?></option>
+                <option value="<?= $category['id'] ?>" <?php if ($post_data['category'] == $category['id']): ?>selected<?php endif; ?>><?= $category['category'] ?></option>
             <?php endforeach; ?>
         </select>
     </div>
