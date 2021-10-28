@@ -170,44 +170,44 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <DefaultTmpEngine>InnoDB</DefaultTmpEngine>
       <DefaultCasing>exact</DefaultCasing>
     </root>
-    <schema id="2" parent="1" name="Products">
-      <Collation>latin1_swedish_ci</Collation>
-    </schema>
-    <schema id="3" parent="1" name="administrator">
+    <schema id="2" parent="1" name="administrator">
       <Current>1</Current>
       <Collation>latin1_swedish_ci</Collation>
     </schema>
-    <schema id="4" parent="1" name="alb_database">
+    <schema id="3" parent="1" name="alb_database">
       <Collation>utf8mb4_unicode_ci</Collation>
     </schema>
-    <schema id="5" parent="1" name="atis">
+    <schema id="4" parent="1" name="atis">
       <Collation>latin1_swedish_ci</Collation>
     </schema>
-    <schema id="6" parent="1" name="book_shop">
+    <schema id="5" parent="1" name="book_shop">
       <Collation>latin1_swedish_ci</Collation>
     </schema>
-    <schema id="7" parent="1" name="information_schema">
+    <schema id="6" parent="1" name="information_schema">
       <Collation>utf8_general_ci</Collation>
     </schema>
-    <schema id="8" parent="1" name="instagram">
+    <schema id="7" parent="1" name="instagram">
       <Collation>latin1_swedish_ci</Collation>
     </schema>
-    <schema id="9" parent="1" name="lara">
+    <schema id="8" parent="1" name="lara">
       <Collation>latin1_swedish_ci</Collation>
     </schema>
-    <schema id="10" parent="1" name="mvc">
+    <schema id="9" parent="1" name="mvc">
       <Collation>latin1_swedish_ci</Collation>
     </schema>
-    <schema id="11" parent="1" name="mysql">
+    <schema id="10" parent="1" name="mysql">
       <Collation>latin1_swedish_ci</Collation>
     </schema>
-    <schema id="12" parent="1" name="performance_schema">
+    <schema id="11" parent="1" name="performance_schema">
       <Collation>utf8_general_ci</Collation>
     </schema>
-    <schema id="13" parent="1" name="phpmyadmin">
+    <schema id="12" parent="1" name="phpmyadmin">
       <Collation>latin1_swedish_ci</Collation>
     </schema>
-    <schema id="14" parent="1" name="prestashop">
+    <schema id="13" parent="1" name="prestashop">
+      <Collation>latin1_swedish_ci</Collation>
+    </schema>
+    <schema id="14" parent="1" name="Products">
       <Collation>latin1_swedish_ci</Collation>
     </schema>
     <schema id="15" parent="1" name="shirts_db">
@@ -954,12 +954,12 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <Host>localhost</Host>
     </user>
     <user id="249" parent="1" name="sadiku"/>
-    <table id="250" parent="3" name="categories"/>
-    <table id="251" parent="3" name="comments"/>
-    <table id="252" parent="3" name="images"/>
-    <table id="253" parent="3" name="posts"/>
-    <table id="254" parent="3" name="roles"/>
-    <table id="255" parent="3" name="users"/>
+    <table id="250" parent="2" name="categories"/>
+    <table id="251" parent="2" name="comments"/>
+    <table id="252" parent="2" name="images"/>
+    <table id="253" parent="2" name="posts"/>
+    <table id="254" parent="2" name="roles"/>
+    <table id="255" parent="2" name="users"/>
     <column id="256" parent="250" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
